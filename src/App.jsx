@@ -3,6 +3,7 @@ import Home from "./pages/home";
 import DashboardLayout from "./components/DashboardLayout";
 import CreateAPI from "./pages/create";
 import APIDetails from "./pages/APIDetails";
+import Auth from "./pages/auth";
 
 function App() {
   return (
@@ -32,6 +33,8 @@ function App() {
             </DashboardLayout>
           }
         />
+        <Route path="/auth" element={<Auth></Auth>}>
+        </Route>
       </Routes>
     </BrowserRouter>
   );

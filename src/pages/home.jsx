@@ -17,7 +17,8 @@ const Home = () => {
     // Fetch APIs from your backend
     const fetchApis = async () => {
       try {
-        const response = await fetch('/api/in/api', {
+        // todo the jwt token flow need to be fixed
+        const response = await fetch('http://localhot:5000/api/in/api', {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
           }

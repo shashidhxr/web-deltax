@@ -33,7 +33,7 @@ const CreateAPI = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('/api/in/api', {
+      const response = await fetch('http://localhost:5000/api/in/api', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
