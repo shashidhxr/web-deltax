@@ -1,43 +1,38 @@
-import { useState } from 'react';
-import { 
-  Mail, 
-  Lock, 
-  User,
-  X,
-  KeyRound,
-  AlertCircle
-} from 'lucide-react';
+import { useState } from "react";
+import { Mail, Lock, User, X, KeyRound, AlertCircle } from "lucide-react";
 
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(true);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
     setLoading(true);
 
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
 
     try {
-      const endpoint = isSignUp ? 'http://localhost:5000/api/in/user/signup' : 'http://localhost:5000/api/in/user/signin';
+      const endpoint = isSignUp
+        ? "http://localhost:5000/api/in/user/signup"
+        : "http://localhost:5000/api/in/user/signin";
       const response = await fetch(endpoint, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
 
       if (!response.ok) {
-        throw new Error('Authentication failed');
+        throw new Error("Authentication failed");
       }
 
       const result = await response.json();
-      localStorage.setItem('token', result.token);
-      window.location.href = '/';
+      localStorage.setItem("token", result.token);
+      window.location.href = "/";
     } catch (err) {
       setError(err.message);
     } finally {
@@ -51,27 +46,26 @@ const Auth = () => {
         {/* Header */}
         <div className="p-6 border-b border-gray-200">
           <div className="flex items-center justify-between">
-            <h1 className="text-xl font-bold text-gray-800">
-              DeltaX Gateway
-            </h1>
-            <button onClick={() => window.history.back()} className="text-gray-500 hover:text-gray-700">
+            <h1 className="text-xl font-bold text-gray-800">DeltaX Gateway</h1>
+            <button
+              onClick={() => window.history.back()}
+              className="text-gray-500 hover:text-gray-700"
+            >
               <X size={20} />
             </button>
           </div>
         </div>
 
-        {/* Auth Form */}
         <div className="p-6">
           <div className="text-center mb-8">
             <KeyRound className="mx-auto h-12 w-12 text-blue-500" />
             <h2 className="mt-4 text-2xl font-semibold text-gray-900">
-              {isSignUp ? 'Create your account' : 'Welcome back'}
+              {isSignUp ? "Create your account" : "Welcome back"}
             </h2>
             <p className="mt-2 text-sm text-gray-600">
-              {isSignUp 
-                ? 'Sign up to start managing your APIs'
-                : 'Sign in to your account to continue'
-              }
+              {isSignUp
+                ? "Sign up to start managing your APIs"
+                : "Sign in to your account to continue"}
             </p>
           </div>
 
@@ -145,19 +139,22 @@ const Auth = () => {
               disabled={loading}
               className="w-full py-2 px-4 border border-transparent rounded-lg shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {loading ? 'Processing...' : isSignUp ? 'Create Account' : 'Sign In'}
+              {loading
+                ? "Processing..."
+                : isSignUp
+                ? "Create Account"
+                : "Sign In"}
             </button>
           </form>
 
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-600">
-              {isSignUp ? 'Already have an account?' : "Don't have an account?"}
-              {' '}
+              {isSignUp ? "Already have an account?" : "Don't have an account?"}{" "}
               <button
                 onClick={() => setIsSignUp(!isSignUp)}
                 className="font-medium text-blue-600 hover:text-blue-500"
               >
-                {isSignUp ? 'Sign In' : 'Sign Up'}
+                {isSignUp ? "Sign In" : "Sign Up"}
               </button>
             </p>
           </div>
