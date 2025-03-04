@@ -31,7 +31,8 @@ const Auth = () => {
       }
 
       const result = await response.json();
-      localStorage.setItem("token", result.token);
+      console.log(result.token)
+      // localStorage.setItem("token", result.token);
       window.location.href = "/";
     } catch (err) {
       setError(err.message);

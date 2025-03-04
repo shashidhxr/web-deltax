@@ -1,31 +1,45 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { 
-  Home, 
-  Key, 
-  Shield, 
-  Share2, 
-  Sliders, 
-  Network, 
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  Home,
+  Key,
+  Shield,
+  Share2,
+  Sliders,
+  Network,
   Plus,
   Settings,
-  LogOut
-} from 'lucide-react';
+  LogOut,
+} from "lucide-react";
 
 // eslint-disable-next-line react/prop-types
 const DashboardLayout = ({ children }) => {
   const navigate = useNavigate();
-  const [activeItem, setActiveItem] = useState('dashboard');
+  const [activeItem, setActiveItem] = useState("dashboard");
+  // eslint-disable-next-line no-unused-vars
+  const [authenticated, setAuthenticated] = useState(false);
 
   const menuItems = [
-    { id: 'dashboard', icon: <Home size={20} />, label: 'Dashboard' },
-    { id: 'apis', icon: <Network size={20} />, label: 'API Tunnels' },
-    { id: 'auth', icon: <Key size={20} />, label: 'Authentication' },
-    { id: 'ratelimit', icon: <Sliders size={20} />, label: 'Rate Limiting' },
-    { id: 'loadbalancing', icon: <Share2 size={20} />, label: 'Load Balancing' },
-    { id: 'security', icon: <Shield size={20} />, label: 'Security' },
+    { id: "dashboard", icon: <Home size={20} />, label: "Dashboard" },
+    { id: "apis", icon: <Network size={20} />, label: "API Tunnels" },
+    { id: "auth", icon: <Key size={20} />, label: "Authentication" },
+    { id: "ratelimit", icon: <Sliders size={20} />, label: "Rate Limiting" },
+    {
+      id: "loadbalancing",
+      icon: <Share2 size={20} />,
+      label: "Load Balancing",
+    },
+    { id: "security", icon: <Shield size={20} />, label: "Security" },
   ];
 
+  const handleAuthButtonClick = () => {
+    if(authenticated) {
+      navigate('/profile')
+    } else {
+      navigate('/auth')
+    }
+  }
+  
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
@@ -45,8 +59,8 @@ const DashboardLayout = ({ children }) => {
                   onClick={() => setActiveItem(item.id)}
                   className={`w-full flex items-center px-4 py-2 text-sm rounded-lg ${
                     activeItem === item.id
-                      ? 'bg-blue-50 text-blue-600'
-                      : 'text-gray-600 hover:bg-gray-50'
+                      ? "bg-blue-50 text-blue-600"
+                      : "text-gray-600 hover:bg-gray-50"
                   }`}
                 >
                   {item.icon}
@@ -59,13 +73,13 @@ const DashboardLayout = ({ children }) => {
           {/* Bottom Actions */}
           <div className="p-4 border-t border-gray-200">
             <button
-              onClick={() => navigate('/create')}
+              onClick={() => navigate("/create")}
               className="w-full flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
             >
               <Plus size={20} />
               <span className="ml-2">Create New API</span>
             </button>
-            
+
             <div className="mt-4 space-y-1">
               <button className="w-full flex items-center px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-50">
                 <Settings size={20} />
@@ -89,15 +103,16 @@ const DashboardLayout = ({ children }) => {
               <button className="px-4 py-2 text-sm text-gray-600 hover:text-gray-800">
                 Documentation
               </button>
-              <button className="px-4 py-2 text-sm bg-gray-800 text-white rounded-lg hover:bg-gray-700">
-                Profile
+              <button
+                onClick={handleAuthButtonClick}
+                className="px-4 py-2 text-sm bg-gray-800 text-white rounded-lg hover:bg-gray-700"
+              >
+                {authenticated? "Profile": "Login"}
               </button>
             </div>
           </div>
         </header>
-        <main className="p-6">
-          {children}
-        </main>
+        <main className="p-6">{children}</main>
       </div>
     </div>
   );
