@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import { 
   ArrowLeft,
   Edit,
@@ -23,6 +24,8 @@ import {
   Area
 } from 'recharts';
 
+axios.defaults.withCredentials = true;
+
 const APIDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -39,20 +42,12 @@ const APIDetails = () => {
     const fetchApiDetails = async () => {
       try {
         // Fetch API details
-        const response = await fetch(`/api/in/api/${id}`, {
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          }
-        });
+        const response = await axios.get("http://localhost:5000/api/in/api", {})
         const data = await response.json();
         setApi(data);
         
         // Fetch analytics data
-        const analyticsResponse = await fetch(`/api/in/api/${id}/analytics?timeRange=${timeRange}`, {
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          }
-        });
+        const analyticsResponse = await axios.get(`/api/in/api/${id}/analytics?timeRange=${timeRange}`, {});
         const analyticsData = await analyticsResponse.json();
         setAnalyticsData(analyticsData);
       } catch (error) {

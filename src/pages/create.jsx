@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ArrowLeft, Save, Shield, Globe, Activity, Server } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const CreateAPI = () => {
   const navigate = useNavigate();
@@ -26,14 +27,15 @@ const CreateAPI = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/in/api", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          // Authorization: `Bearer ${localStorage.getItem("token")}`,
+      const response = await axios.post(
+        "http://localhost:5000/api/in/api",
+        {
+          body: JSON.stringify(formData),
         },
-        body: JSON.stringify(formData),
-      });
+        {
+          withCredentials: true,
+        }
+      );
       if (response.ok) {
         navigate("/");
       }

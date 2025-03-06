@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { Mail, Lock, User, X, KeyRound, AlertCircle } from "lucide-react";
+import axios from "axios";
+
+axios.defaults.withCredentials = true
 
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(true);
@@ -18,24 +21,20 @@ const Auth = () => {
       const endpoint = isSignUp
         ? "http://localhost:5000/api/in/user/signup"
         : "http://localhost:5000/api/in/user/signin";
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+      
+      const response = await axios.post(endpoint, {
+        name: data.name,
+        email: data.email,
+        password: data.password
       });
-
-      if (!response.ok) {
-        throw new Error("Authentication failed");
-      }
-
-      const result = await response.json();
-      console.log(result.token)
-      // localStorage.setItem("token", result.token);
+      
+      // Use axios response properties (not fetch)
+      console.log(response.data.message);
+      // localStorage.setItem("token", response.data.token);
       window.location.href = "/";
     } catch (err) {
-      setError(err.message);
+      // With axios, the error message is typically in err.response.data
+      setError(err.response?.data?.message || err.message);
     } finally {
       setLoading(false);
     }

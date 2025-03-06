@@ -24,22 +24,31 @@ const DashboardLayout = ({ children }) => {
     { id: "apis", icon: <Network size={20} />, label: "API Tunnels" },
     { id: "auth", icon: <Key size={20} />, label: "Authentication" },
     { id: "ratelimit", icon: <Sliders size={20} />, label: "Rate Limiting" },
-    {
-      id: "loadbalancing",
-      icon: <Share2 size={20} />,
-      label: "Load Balancing",
-    },
+    { id: "loadbalancing", icon: <Share2 size={20} />, label: "Load Balancing", },
     { id: "security", icon: <Shield size={20} />, label: "Security" },
   ];
 
   const handleAuthButtonClick = () => {
-    if(authenticated) {
-      navigate('/profile')
+    if (authenticated) {
+      navigate("/profile");
     } else {
-      navigate('/auth')
+      navigate("/auth");
     }
-  }
-  
+  };
+
+  const handleLogout = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/api/in/user/logout", {
+        method: "POST",
+      });
+      if (response.ok) {
+        window.location.href = "/auth"; // Redirect to login page
+      }
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
+  };
+
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
@@ -107,7 +116,13 @@ const DashboardLayout = ({ children }) => {
                 onClick={handleAuthButtonClick}
                 className="px-4 py-2 text-sm bg-gray-800 text-white rounded-lg hover:bg-gray-700"
               >
-                {authenticated? "Profile": "Login"}
+                {authenticated ? "Profile" : "Login"}
+              </button>
+              <button
+                onClick={handleLogout}
+                className="px-4 py-2 text-sm bg-gray-800 text-white rounded-lg hover:bg-gray-700"
+              >
+                Logout
               </button>
             </div>
           </div>
