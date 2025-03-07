@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import {
   Home,
   Key,
@@ -38,11 +39,11 @@ const DashboardLayout = ({ children }) => {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/in/user/logout", {
-        method: "POST",
-      });
-      if (response.ok) {
-        window.location.href = "/auth"; // Redirect to login page
+      const response = await axios.post("http://localhost:5000/api/in/user/logout", {})
+      window.localStorage.href = '/'
+      if(response.status == 200){
+        alert("Logged out succesfully")
+        navigate('/auth')
       }
     } catch (error) {
       console.error("Error during logout:", error);
