@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 import {
   ArrowUpDown,
   Shield,
@@ -9,6 +10,8 @@ import {
   AlertCircle,
 } from "lucide-react";
 
+axios.defaults.withCredentials = true;
+
 const Home = () => {
   const [apis, setApis] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -17,12 +20,10 @@ const Home = () => {
     const fetchApis = async () => {
       try {
         // todo the jwt token flow need to be rewritten
-        const response = await fetch("http://localhot:5000/api/in/api", {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
-        const data = await response.json();
+        const response = await axios.get('http://localhost:5000/api/in/api')
+        // console.log(response)
+        const data = response.data;
+        // console.log(data)
         setApis(data.apis);
       } catch (error) {
         console.error("Error fetching APIs:", error);

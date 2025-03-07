@@ -28,10 +28,10 @@ const CreateAPI = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/in/api",
-        {
-          body: JSON.stringify(formData),
-        },
+        "http://localhost:5000/api/in/api", formData,
+        // {
+          // body: JSON.stringify(formData),
+        // },
         {
           withCredentials: true,
         }
