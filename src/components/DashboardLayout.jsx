@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {  useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import {
@@ -12,14 +12,16 @@ import {
   Settings,
   LogOut,
 } from "lucide-react";
+import { useAuth } from "../context/authProvider";
+
+// axios.defaults.withCredentials = true
 
 // eslint-disable-next-line react/prop-types
-const DashboardLayout = ({ children }) => {
+export const DashboardLayout = ({ children }) => {
   const navigate = useNavigate();
   const [activeItem, setActiveItem] = useState("dashboard");
-  // eslint-disable-next-line no-unused-vars
-  const [authenticated, setAuthenticated] = useState(false);
-
+  const {authenticated, setAuthenticated} = useAuth()
+  
   const menuItems = [
     { id: "dashboard", icon: <Home size={20} />, label: "Dashboard" },
     { id: "apis", icon: <Network size={20} />, label: "API Tunnels" },
@@ -28,7 +30,7 @@ const DashboardLayout = ({ children }) => {
     { id: "loadbalancing", icon: <Share2 size={20} />, label: "Load Balancing", },
     { id: "security", icon: <Shield size={20} />, label: "Security" },
   ];
-
+  
   const handleAuthButtonClick = () => {
     if (authenticated) {
       navigate("/profile");
@@ -43,6 +45,7 @@ const DashboardLayout = ({ children }) => {
       window.localStorage.href = '/'
       if(response.status == 200){
         alert("Logged out succesfully")
+        setAuthenticated(false)
         navigate('/auth')
       }
     } catch (error) {

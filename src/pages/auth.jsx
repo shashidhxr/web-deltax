@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Mail, Lock, User, X, KeyRound, AlertCircle } from "lucide-react";
 import axios from "axios";
+import { useAuth } from "../context/authProvider";
 
 axios.defaults.withCredentials = true
 
@@ -8,6 +9,7 @@ const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(true);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const {authenticated, setAuthenticated} = useAuth()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,7 +29,9 @@ const Auth = () => {
         email: data.email,
         password: data.password
       });
-      
+
+      setAuthenticated(true)
+      console.log(authenticated)
       // Use axios response properties (not fetch)
       console.log(response.data.message);
       // localStorage.setItem("token", response.data.token);
