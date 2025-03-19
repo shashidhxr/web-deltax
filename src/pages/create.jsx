@@ -28,7 +28,7 @@ const CreateAPI = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `${import.meta.env.BACKEND_URL}/api/in/api`, formData,
+        `${import.meta.env.VITE_BACKEND_URL}/api/in/api`, formData,
         // {
           // body: JSON.stringify(formData),
         // },

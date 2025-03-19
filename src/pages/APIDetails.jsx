@@ -42,12 +42,12 @@ const APIDetails = () => {
     const fetchApiDetails = async () => {
       try {
         // Fetch API details
-        const response = await axios.get(`${import.meta.env.BACKEND_URL}/api/in/api`, {})
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/in/api`, {})
         const data = await response.json();
         setApi(data);
         
         // Fetch analytics data
-        const analyticsResponse = await axios.get(`/api/in/api/${id}/analytics?timeRange=${timeRange}`, {});
+        const analyticsResponse = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/in/api/${id}/analytics?timeRange=${timeRange}`, {});
         const analyticsData = await analyticsResponse.json();
         setAnalyticsData(analyticsData);
       } catch (error) {

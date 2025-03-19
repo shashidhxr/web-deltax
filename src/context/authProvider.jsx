@@ -13,7 +13,7 @@ export function AuthProvider({ children }) {
     const checkAuth = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.BACKEND_URL}/api/in/user/check-auth`,
+          `${import.meta.env.VITE_BACKEND_URL}/api/in/user/check-auth`,
           { withCredentials: true }
         );
         setAuthenticated(response.data.authenticated);
