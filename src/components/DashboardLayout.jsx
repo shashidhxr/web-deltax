@@ -41,7 +41,7 @@ export const DashboardLayout = ({ children }) => {
 
   const handleLogout = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/api/in/user/logout", {})
+      const response = await axios.post(`${import.meta.env.BACKEND_URL}/api/in/user/logout`, {})
       window.localStorage.href = '/'
       if(response.status == 200){
         alert("Logged out succesfully")

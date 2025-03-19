@@ -42,7 +42,7 @@ const APIDetails = () => {
     const fetchApiDetails = async () => {
       try {
         // Fetch API details
-        const response = await axios.get("http://localhost:5000/api/in/api", {})
+        const response = await axios.get(`${import.meta.env.BACKEND_URL}/api/in/api`, {})
         const data = await response.json();
         setApi(data);
         

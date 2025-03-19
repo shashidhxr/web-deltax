@@ -21,8 +21,8 @@ const Auth = () => {
 
     try {
       const endpoint = isSignUp
-        ? "http://localhost:5000/api/in/user/signup"
-        : "http://localhost:5000/api/in/user/signin";
+        ? `${import.meta.env.BACKEND_URL}/api/in/user/signup`
+        : `${import.meta.env.BACKEND_URL}/api/in/user/signin`;
       
       const response = await axios.post(endpoint, {
         name: data.name,

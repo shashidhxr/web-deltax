@@ -20,7 +20,7 @@ const Home = () => {
     const fetchApis = async () => {
       try {
         // todo the jwt token flow need to be rewritten
-        const response = await axios.get('http://localhost:5000/api/in/api')
+        const response = await axios.get(`${import.meta.env.BACKEND_URL}/api/in/api`)
         // console.log(response)
         const data = response.data;
         // console.log(data)

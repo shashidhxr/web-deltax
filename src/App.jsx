@@ -5,6 +5,7 @@ import CreateAPI from "./pages/create";
 import APIDetails from "./pages/APIDetails";
 import Auth from "./pages/auth";
 
+
 function App() {
   return (
     <BrowserRouter>
@@ -16,7 +17,7 @@ function App() {
               <Home />
             </DashboardLayout>
           }
-        />
+        ></Route>
         <Route
           path="/create"
           element={
@@ -32,9 +33,16 @@ function App() {
               <APIDetails />
             </DashboardLayout>
           }
-        />
-        <Route path="/auth" element={<Auth></Auth>}>
-        </Route>
+        ></Route>
+        <Route
+          path="/api/:id"
+          element={
+            <DashboardLayout>
+              <APIDetails />
+            </DashboardLayout>
+          }
+        ></Route>
+        <Route path="/auth" element={<Auth></Auth>}></Route>
       </Routes>
     </BrowserRouter>
   );
