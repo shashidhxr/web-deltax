@@ -8,13 +8,14 @@ import RateLimit from "./pages/rateLimit";
 import LoadBalance from "./pages/loadBalance";
 import Settings from "./pages/settings";
 import Security from "./pages/security";
+import LandingPage from "./pages/landing";
 
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/"
+        <Route path="/home"
 element={
             <DashboardLayout>
               <Home />
@@ -42,7 +43,7 @@ element={
         <Route path="/loadbalancing" element={<LoadBalance/>}></Route>
         <Route path="/security" element={<Security/>}></Route>
         <Route path="/settings" element={<Settings/>}></Route>
-
+          <Route path="/" element={<LandingPage/>}></Route>
       </Routes>
     </BrowserRouter>
   );
