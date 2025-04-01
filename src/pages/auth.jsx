@@ -35,7 +35,7 @@ const Auth = () => {
       // Use axios response properties (not fetch)
       console.log(response.data.message);
       // localStorage.setItem("token", response.data.token);
-      window.location.href = "/";
+      window.location.href = "/home";
     } catch (err) {
       // With axios, the error message is typically in err.response.data
       setError(err.response?.data?.message || err.message);
