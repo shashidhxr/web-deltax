@@ -38,8 +38,8 @@ const CreateAPI = () => {
           withCredentials: true,
         }
       );
-      if (response.ok) {
-        navigate("/");
+      if (response.status == 201 | 200) {
+        navigate("/home");
       }
     } catch (error) {
       console.error("Error creating API:", error);

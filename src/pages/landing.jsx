@@ -229,7 +229,7 @@ const LandingPage = () => {
                       position: "absolute",
                       left: "2.5rem",
                       animation: "bounceIn 0.8s forwards",
-                      fontFamily: "'Bungee', cursive", // Requires Google Fonts import
+                      fontFamily: 'Bungee',
                       fontSize: "1em",
                       transform: "rotate(10deg)",
                     }}
