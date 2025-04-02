@@ -213,7 +213,7 @@ const LandingPage = () => {
                     opacity: animationStage >= 1 ? 1 : 0,
                     transform:
                       animationStage >= 2
-                        ? "translateX(43px)"
+                        ? "translateX(36px)"
                         : "translateX(0)",
                     transition: "transform 0.6s ease-in-out",
                   }}
@@ -227,9 +227,9 @@ const LandingPage = () => {
                     className="text-blue-600"
                     style={{
                       position: "absolute",
-                      left: "2.5rem",
-                      animation: "bounceIn 0.8s forwards",
-                      fontFamily: 'Bungee',
+                      left: "2.6rem",
+                      animation: "bounceIn 1.8s forwards",
+                      fontFamily: "cursive",
                       fontSize: "1em",
                       transform: "rotate(10deg)",
                     }}
