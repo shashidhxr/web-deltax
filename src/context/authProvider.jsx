@@ -8,7 +8,6 @@ const AuthContext = createContext();
 export function AuthProvider({ children }) {
   const [authenticated, setAuthenticated] = useState(false);
 
-  // Check auth status on app load
   useEffect(() => {
     const checkAuth = async () => {
       try {
