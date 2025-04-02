@@ -1,0 +1,16 @@
+{
+    "rewrites": [
+      {
+        "source": "/home",
+        "destination": "/"
+      },
+      {
+        "source": "/home/(.*)",
+        "destination": "/$1"
+      },
+      {
+        "source": "/(.*)", 
+        "destination": "/"
+      }
+    ]
+  }

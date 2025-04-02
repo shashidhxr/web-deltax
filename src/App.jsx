@@ -10,13 +10,14 @@ import Settings from "./pages/settings";
 import Security from "./pages/security";
 import LandingPage from "./pages/landing";
 
-
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/home"
-element={
+        <Route path="/" element={<LandingPage />}></Route>
+        <Route
+          path="/home"
+          element={
             <DashboardLayout>
               <Home />
             </DashboardLayout>
@@ -39,11 +40,10 @@ element={
           }
         ></Route>
         <Route path="/auth" element={<Auth></Auth>}></Route>
-        <Route path="/ratelimit" element={<RateLimit/>}></Route>
-        <Route path="/loadbalancing" element={<LoadBalance/>}></Route>
-        <Route path="/security" element={<Security/>}></Route>
-        <Route path="/settings" element={<Settings/>}></Route>
-          <Route path="/" element={<LandingPage/>}></Route>
+        <Route path="/ratelimit" element={<RateLimit />}></Route>
+        <Route path="/loadbalancing" element={<LoadBalance />}></Route>
+        <Route path="/security" element={<Security />}></Route>
+        <Route path="/settings" element={<Settings />}></Route>
       </Routes>
     </BrowserRouter>
   );

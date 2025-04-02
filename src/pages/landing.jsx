@@ -169,13 +169,13 @@ const LandingPage = () => {
 
           <div className="flex items-center space-x-4">
             <button
-              onClick={() => navigate("/auth")}
+              onClick={() => navigate("/auth?signin=true")}
               className="px-4 py-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-gray-700"
             >
               Log In
             </button>
             <button
-              onClick={() => navigate("/auth?signup=true")}
+              onClick={() => navigate("/auth")}
               className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors shadow-md"
             >
               Get Started
