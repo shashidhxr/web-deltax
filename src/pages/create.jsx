@@ -9,7 +9,7 @@ const CreateAPI = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
-    exposedUrl: "",
+    exposedPath: "",
     targetUrl: "",
     method: "GET",
     authType: "",
@@ -84,13 +84,13 @@ const CreateAPI = () => {
 
             <div>
               <label className="block text-sm font-medium text-gray-700">
-                Exposed URL Path
+                Exposed Path
               </label>
               <input
                 type="text"
-                value={formData.exposedUrl}
+                value={formData.exposedPath}
                 onChange={(e) =>
-                  setFormData({ ...formData, exposedUrl: e.target.value })
+                  setFormData({ ...formData, exposedPath: e.target.value })
                 }
                 className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
                 placeholder="/api/v1/resource"
