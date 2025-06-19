@@ -111,7 +111,7 @@ const Home = () => {
                       {api.name}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-mono text-gray-500">
-                      {`${api.user_id}/${api.exposed_path}`}
+                      {`/${api.user_id}${api.exposed_path}`}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span className={`px-2 py-1 rounded-full text-xs font-medium ${
