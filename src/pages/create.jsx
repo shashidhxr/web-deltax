@@ -39,7 +39,7 @@ const CreateAPI = () => {
         }
       );
       if (response.status == 201 | 200) {
-        alert(`API Route configured.\nExposed path is: https://deltax-app.bravegrass-aeb359bf.eastus.azurecontainerapps.io/${response.data.api.user_id}/${response.data.api.exposedPath}`)
+        alert(`API Route configured.\nExposed path is: https://deltax-app.bravegrass-aeb359bf.eastus.azurecontainerapps.io/${response.data.api.user_id}/${response.data.api.exposed_path}`)
         navigate("/home");
       }
     } catch (error) {
